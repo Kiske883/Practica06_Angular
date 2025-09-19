@@ -1,1 +1,78 @@
-<p>new-user works!</p>
+<section class="card shadow mt-4 mx-auto" style="max-width: 600px">
+  <div class="card-body p-4">
+    <h2 class="h5 mb-4">{{ title }}</h2>
+
+    <form [formGroup]="userForm" (ngSubmit)="sendDataForm()">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre Usuario</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Introduce el nombre"
+          class="form-control"
+          formControlName="nombre"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="apellidos" class="form-label">Apellidos Usuario</label>
+        <input
+          type="text"
+          id="apellidos"
+          name="apellidos"
+          placeholder="Introduce los apellidos"
+          class="form-control"
+          formControlName="apellidos"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Usuario</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="empleado@empresa.com"
+          class="form-control"
+          formControlName="email"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Imagen Usuario</label>
+        <input
+          type="text"
+          id="image"
+          name="image"
+          placeholder="Introduzca URL"
+          class="form-control"
+          formControlName="image"
+        />
+      </div>
+
+      <!-- Este campo aparece en la respuesta, pero no en la imagen del Insertar 
+           con lo que lo muestro para poder actualizarlo, pero no en el alta de usuario,
+           ya uqe no aparece en la imagen del word de la practica.  
+           Me parece muy extraño mantener password si no hay login, pero bueno.
+         
+      @if (idUser) {
+      <div class="mb-3">
+        <label for="password" class="form-label">Password Usuario</label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          placeholder="Introduzca contraseña Usuario"
+          class="form-control"
+          formControlName="password"
+        />
+      </div>
+      }  -->
+
+      <div class="d-grid">
+        <input type="submit" class="btn btn-primary" [value]="buttonText" />
+      </div>
+    </form>
+  </div>
+</section>

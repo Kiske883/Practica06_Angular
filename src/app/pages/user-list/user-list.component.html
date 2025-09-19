@@ -1,0 +1,14 @@
+<section class="promises">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4">
+    @for( user of arrayUsers; track user.id) {
+    <article class="col">        
+      <app-user-card [myUser]="user"></app-user-card>
+    </article>
+    }
+  </div>
+
+  <div class="d-flex justify-content-center py-2">
+    <button class="btn btn-primary me-2" (click)="gotoPrev()">PREV</button>
+    <button class="btn btn-primary" (click)="gotoNext()">NEXT</button>
+  </div>
+</section>

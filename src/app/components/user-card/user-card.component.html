@@ -1,0 +1,29 @@
+<div class="card h-100 text-center p-3">
+  <img
+    [src]="myUser()?.image"
+    alt="{{ myUser()?.first_name }} {{ myUser()?.last_name }}"
+    class="rounded-circle mx-auto d-block mb-3"
+    style="width: 120px; height: 120px; object-fit: cover"
+  />
+
+  <h5 class="card-title mb-4">
+    {{ myUser()?.first_name }} {{ myUser()?.last_name }}
+  </h5>
+
+  <div class="mt-auto">
+    <div class="d-flex justify-content-around text-muted">
+      <div class="text-center cursor-pointer">
+        <i class="bi bi-search fs-3" [routerLink]="['/user', myUser()?._id]"></i>
+        <div class="small">Ver detalle</div>
+      </div>
+      <div class="text-center cursor-pointer">
+        <i class="bi bi-arrow-clockwise fs-3" [routerLink]="['/updateUser', myUser()?._id]"></i>
+        <div class="small">Actualizar</div>
+      </div>
+      <div class="text-center">
+        <i class="bi bi-trash fs-3"></i>
+        <div class="small">Borrar</div>
+      </div>
+    </div>
+  </div>
+</div>
