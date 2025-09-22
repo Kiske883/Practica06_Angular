@@ -1,4 +1,4 @@
-<section class="card shadow mt-4 mx-auto" style="max-width: 600px">
+<section class="card shadow mt-4 mx-auto bg-body-secondary" style="max-width: 600px">
   <div class="card-body p-4">
     <h2 class="h5 mb-4">{{ title }}</h2>
 
@@ -13,6 +13,9 @@
           class="form-control"
           formControlName="nombre"
         />
+        @if ( userForm.get('nombre')?.invalid && userForm.get('nombre')?.touched) {
+        <div class="text-danger small">El nombre es obligatorio</div>
+        }
       </div>
 
       <div class="mb-3">
@@ -25,6 +28,9 @@
           class="form-control"
           formControlName="apellidos"
         />
+        @if ( userForm.get('apellidos')?.invalid && userForm.get('apellidos')?.touched) {
+        <div class="text-danger small">Los apellidos son obligatorios</div>
+        }        
       </div>
 
       <div class="mb-3">
@@ -33,10 +39,14 @@
           type="email"
           id="email"
           name="email"
+          autocomplete="email"
           placeholder="empleado@empresa.com"
           class="form-control"
           formControlName="email"
         />
+        @if ( userForm.get('email')?.invalid && userForm.get('email')?.touched) {
+        <div class="text-danger small">Un Email corecto obligatorio</div>
+        }        
       </div>
 
       <div class="mb-3">
@@ -49,29 +59,18 @@
           class="form-control"
           formControlName="image"
         />
+        @if ( userForm.get('image')?.invalid && userForm.get('image')?.touched) {
+        <div class="text-danger small">La URL de imagen es obligatoria</div>
+        }        
       </div>
-
-      <!-- Este campo aparece en la respuesta, pero no en la imagen del Insertar 
-           con lo que lo muestro para poder actualizarlo, pero no en el alta de usuario,
-           ya uqe no aparece en la imagen del word de la practica.  
-           Me parece muy extraño mantener password si no hay login, pero bueno.
-         
-      @if (idUser) {
-      <div class="mb-3">
-        <label for="password" class="form-label">Password Usuario</label>
-        <input
-          type="text"
-          id="password"
-          name="password"
-          placeholder="Introduzca contraseña Usuario"
-          class="form-control"
-          formControlName="password"
-        />
-      </div>
-      }  -->
 
       <div class="d-grid">
-        <input type="submit" class="btn btn-primary" [value]="buttonText" />
+        <input
+          type="submit"
+          class="btn btn-primary"
+          [value]="buttonText"
+          [disabled]="userForm.invalid"
+        />
       </div>
     </form>
   </div>

@@ -14,7 +14,9 @@ export class UserViewComponent {
   @Input() idUser : string = "" ; 
 
   usersService = inject(UserService);
-  myUser! : IUser ;
+  // myUser! : IUser ;
+
+  myUser: IUser | undefined;
 
   ngOnInit() {    
     this.loadUser() ;

@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { IUser, IUserResponse } from '../../interfaces/iuser.interface';
 import { UserService } from '../../services/user.service';
 import { UserCardComponent } from "../../components/user-card/user-card.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -11,39 +12,44 @@ import { UserCardComponent } from "../../components/user-card/user-card.componen
 })
 export class UserListComponent {
 
-  arrayUsers: IUser[] = [] ;
+  arrayUsers: IUser[] = [];
 
-  linkNext: string = "" ; 
-  linkPrev: string = "" ;   
+  currentPage: number = 1;
+  totalPages: number = 1;
 
-  userService = inject(UserService) ;
+  userService = inject(UserService);
+  router = inject(Router);
 
   ngOnInit() {
     this.uploadUsers();
   }
 
-  async uploadUsers(url : string = "" ) {
+  async uploadUsers(page: number = 1) {
+    
+    try {
+      let pageStr = page.toString();
+      const response: IUserResponse = await this.userService.getAll(pageStr);
 
-    try {      
-      const response: IUserResponse = await this.userService.getAll(url);
-
-      this.linkPrev = 'https://peticiones.online/api/users?page=1' ;
-      this.linkNext = 'https://peticiones.online/api/users?page=2' ;
+      this.currentPage = response.page;
+      this.totalPages = response.total_pages;
 
       this.arrayUsers = response.results;
-    } catch(error) {
-      console.log(error) ;
-    }    
+    } catch (error) {
+      console.log(error);
+    }
 
   }
 
   gotoPrev() {
-    this.uploadUsers(this.linkPrev) ;
+    if (this.currentPage > 1) {
+      this.uploadUsers(this.currentPage - 1);
+    }
   }
 
   gotoNext() {
+    if (this.currentPage < this.totalPages) {
+      this.uploadUsers(this.currentPage + 1);
+    }
 
-    this.uploadUsers(this.linkNext) ;
-
-  }  
+  }
 }

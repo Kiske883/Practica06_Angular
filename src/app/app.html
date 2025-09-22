@@ -1,6 +1,12 @@
-<header>
-<app-nav></app-nav>
+<header class="bg-dark border-4 border-bottom border-primary mb-3">
+  <div class="container">
+    <app-nav></app-nav>
+  </div>
 </header>
 <main class="container">
-<router-outlet/>
+  <router-outlet />
+  <ngx-sonner-toaster richColors visibleToasts="10"></ngx-sonner-toaster>
 </main>
+<footer>
+    <app-footer/>    
+</footer>

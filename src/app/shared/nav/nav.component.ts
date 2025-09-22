@@ -9,4 +9,6 @@ import { RouterLink } from '@angular/router';
 })
 export class NavComponent {
 
+  myUserTitle: string = "agoodUsers";
+
 }

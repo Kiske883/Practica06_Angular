@@ -8,7 +8,7 @@
   </div>
 
   <div class="d-flex justify-content-center py-2">
-    <button class="btn btn-primary me-2" (click)="gotoPrev()">PREV</button>
-    <button class="btn btn-primary" (click)="gotoNext()">NEXT</button>
+    <button class="btn btn-primary me-2" (click)="gotoPrev()" [disabled]="currentPage === 1">PREV</button>
+    <button class="btn btn-primary" (click)="gotoNext()" [disabled]="currentPage === totalPages">NEXT</button>
   </div>
 </section>
