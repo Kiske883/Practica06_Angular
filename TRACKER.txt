@@ -1,0 +1,38 @@
+- Crear Proyecto : Practica06
+
+- API Url : https://peticiones.online/users
+
+- Crear Componentes : 
+    - Un nav que contendra una pequeña imagen y los dos links home y nuevo usuario
+    - Un contenedor que viendo la distribucion sera el userList que contendra todas las cards de user
+        Para este contenedor necesito
+            - Un componente user-view para lo detalles
+            - Un componente user-card para cada objeto de user-list
+            - Un componente buttons compartido por user-card y user-view
+    - footer, para seguir la misma estructura que llevo en todas las practicas 
+    - componente error por si navegan a una url erronea
+
+- Crear Interface dependiendo de la docuemntacion del API
+    - IUser
+    - IUserResponse
+    - IError
+
+- Crear servicio con las siguientes actions
+    - getAll
+    - getById
+    - removeById
+    - update
+    - insert
+
+- Importar sweetAlert para el mensaje de error si/no
+
+- Importar ngxToast para los mensajes de notificacion
+
+- Configurar app.routes.ts con las siguientes rutas :
+    - home
+    - user/id
+    - newUser
+    - updateUser/id
+
+- 
+

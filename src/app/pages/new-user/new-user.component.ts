@@ -108,7 +108,6 @@ export class NewUserComponent {
             description: `msg : ${response.error}`
           })
         } else {
-          console.log(response);
           toast.success(`Actualizado correctamente`, {
             description: `Usuario : ${response._id}`
           })

@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-around text-muted">
+  @if(myAction === 'card') {
+  <div class="text-center cursor-pointer" [routerLink]="['/user', myUser?._id]">
+    <i class="bi bi-search fs-3"></i>
+    <div class="small">Ver detalle</div>
+  </div>
+  }
+  <div
+    class="text-center cursor-pointer"
+    [routerLink]="['/updateUser', myUser?._id]"
+  >
+    <i class="bi bi-arrow-clockwise fs-3"></i>
+    <div class="small">Actualizar</div>
+  </div>
+  <div class="text-center cursor-pointer" (click)="deleteUser(myUser?._id)">
+    <i class="bi bi-trash fs-3"></i>
+    <div class="small">Borrar</div>
+  </div>
+  @if(myAction === 'view') {
+  <div class="text-center cursor-pointer" [routerLink]="['/home']">
+    <i class="bi bi-door-open fs-3 action-icon"></i>
+    <div class="small">Volver</div>
+  </div>
+  }
+</div>

@@ -3,6 +3,7 @@ import { IUser, IUserResponse } from '../../interfaces/iuser.interface';
 import { UserService } from '../../services/user.service';
 import { UserCardComponent } from "../../components/user-card/user-card.component";
 import { Router } from '@angular/router';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-user-list',
@@ -25,7 +26,7 @@ export class UserListComponent {
   }
 
   async uploadUsers(page: number = 1) {
-    
+
     try {
       let pageStr = page.toString();
       const response: IUserResponse = await this.userService.getAll(pageStr);
@@ -34,8 +35,10 @@ export class UserListComponent {
       this.totalPages = response.total_pages;
 
       this.arrayUsers = response.results;
-    } catch (error) {
-      console.log(error);
+    } catch (error : any) {
+      toast.error(`Error en la peticion`, {
+        description: error
+      })
     }
 
   }
