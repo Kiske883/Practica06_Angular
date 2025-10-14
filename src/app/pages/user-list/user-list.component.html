@@ -2,7 +2,7 @@
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4">
     @for( user of arrayUsers; track user.id) {
     <article class="col">        
-      <app-user-card [myUser]="user"></app-user-card>
+      <app-user-card [myUser]="user" (userDeleted)="onUserDeleted($event)"></app-user-card>
     </article>
     }
   </div>

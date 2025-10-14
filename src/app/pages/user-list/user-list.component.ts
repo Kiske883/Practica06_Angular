@@ -55,4 +55,14 @@ export class UserListComponent {
     }
 
   }
+
+onUserDeleted(idUser: string) {
+  console.log('user-list-component emitter', idUser);
+
+  // ✅ Filtramos el array
+  this.arrayUsers = this.arrayUsers.filter(u => u._id !== idUser);
+
+  // ✅ Fuerza detección de cambios si es necesario
+  // this.cdRef.detectChanges();
+}  
 }

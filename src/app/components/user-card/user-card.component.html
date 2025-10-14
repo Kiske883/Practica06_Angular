@@ -11,6 +11,7 @@
   </h5>
 
   <div class="mt-auto">
-    <app-tool-buttons [myUser]="myUser" [myAction] = "'card'"></app-tool-buttons>
+    <app-tool-buttons [myUser]="myUser" [myAction] = "'card'"  [userId]="myUser._id" 
+    (userDeleted)="onUserDeleted($event)"></app-tool-buttons>
   </div>
 </div>

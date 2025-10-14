@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { IUser } from '../../interfaces/iuser.interface';
 import { UserService } from '../../services/user.service';
@@ -12,11 +12,14 @@ import { toast } from 'ngx-sonner';
   styleUrl: './tool-buttons.component.css'
 })
 export class ToolButtonsComponent {
-
+  
+  @Input() userId!: string; 
   @Input() myUser!: IUser | undefined;
   userService = inject(UserService);
 
   @Input() myAction!: string;
+
+  @Output() userDeleted = new EventEmitter<string>();
 
   router = inject(Router);
 
@@ -33,40 +36,40 @@ export class ToolButtonsComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.deleteUserConf(idUser) ;
+        this.deleteUserConf(idUser);
       }
     });
 
   }
 
-  async deleteUserConf(idUser : string ) {
-      try {
+  async deleteUserConf(idUser: string) {
+    try {
 
-        // Juan, dejo esta anotación por si quieres probar la captura del error del api, cuando no existe
-        // idUser = "4" ;
+      // Juan, dejo esta anotación por si quieres probar la captura del error del api, cuando no existe
+      // idUser = "4" ;
 
-        const response: any = await this.userService.removeById(idUser);
+      const response: any = await this.userService.removeById(idUser);
 
-        if (response._id) {
-          toast.success(`Eliminado correctamente`, {
-            description: `Usuario : ${idUser}`
-          }) ; 
+      if (response._id) {
+        toast.success(`Eliminado correctamente`, {
+          description: `Usuario : ${idUser}`
+        });        
+        this.userDeleted.emit(idUser);
+        // this.router.navigate(['/home']);
 
-          this.router.navigate(['/home']);
-
-        } else {
-          toast.error(`Error en la eliminación`, {
-            description: response.error
-          })
-
-        }
-
-      } catch (msg: any) {
-        toast.error(`Error en la peticion`, {
-          description: msg
+      } else {
+        toast.error(`Error en la eliminación`, {
+          description: response.error
         })
+
       }
 
-  }  
+    } catch (msg: any) {
+      toast.error(`Error en la peticion`, {
+        description: msg
+      })
+    }
+
+  }
 
 }

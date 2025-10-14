@@ -116,6 +116,8 @@ export class NewUserComponent {
       } else {
         response = await this.userService.insert(this.userForm.value);
 
+        console.log(`insert response: ${JSON.stringify(response)}`);
+
         if ('error' in response) {
           toast.success(`Error insertando`, {
             description: `msg : ${response.error}`
@@ -123,7 +125,7 @@ export class NewUserComponent {
         } else {
 
           toast.success(`Insertado correctamente`, {
-            description: `Usuario : ${response.id}`
+            description: `Usuario : ${response._id}`
           })
         }
       }

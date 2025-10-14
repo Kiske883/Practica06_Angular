@@ -10,8 +10,9 @@ export class UserService {
 
   private httpClient = inject(HttpClient) ;
 
-  private baseUrl : string = 'https://peticiones.online/api/users' ;
-
+  private baseUrl : string = 'https://peticiones.online/api/users' ;  
+  // private baseUrl : string = 'http://localhost:3000/apigoodusers/users' ;
+  
   getAll ( page : string ) : Promise<any>{
 
     const miUrl = ( page === "") ? this.baseUrl : `${this.baseUrl}/?page=${page}` ; 
